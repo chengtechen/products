@@ -1,11 +1,17 @@
+import os
+
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-    for line in f:
-        if '商品,價格' in line:
-            continue
-        name, price =line.strip().split(',') 
-        products.append([name, price])
-print(products)
+if  os.path.isfile('products.csv'):
+    print('找到檔案products.csv')
+    with open('products.csv', 'r', encoding='utf-8') as f:
+        for line in f:
+            if '商品,價格' in line:
+                continue
+            name, price =line.strip().split(',') 
+            products.append([name, price])
+    print(products)
+else:
+    print('找不到檔案products.csv')
 
 while True:
     name = input('請輸入商品名稱("q"離開):')
